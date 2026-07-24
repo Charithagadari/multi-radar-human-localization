@@ -1,0 +1,6 @@
+Best params (feature_mode=range):
+length_scale: 2.0
+noise_level: 0.01
+alpha: 0.001
+
+Best val XY-RMSE: 0.098120

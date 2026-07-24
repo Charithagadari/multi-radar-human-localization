@@ -1,0 +1,7 @@
+Best CSM geometry configuration:
+eps: 0.2
+minpts: 3
+spread: 0.45
+time_tol: 0.5
+
+Val XY-RMSE: 0.102438 m
