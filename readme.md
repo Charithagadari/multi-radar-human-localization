@@ -1,113 +1,78 @@
 # Multi-Radar Human Localization using Range and Angle Features
 
-A machine learning-based pipeline for **2D human localization** using multiple mmWave radars. The project combines **multi-radar sensor fusion**, **DBSCAN clustering**, **geometric triplet selection**, and **supervised machine learning** to estimate human positions from radar measurements.
+A machine learning pipeline for **2D human localization** using multiple mmWave radars. The project explores multi-radar sensor fusion, DBSCAN-based clustering, geometric triplet selection, and machine learning models to estimate human positions from radar measurements.
 
 ---
 
-## Project Overview
+## Overview
 
-This project investigates localization using **range and angle measurements** collected from multiple radars. The proposed pipeline:
+The localization pipeline consists of the following stages:
 
-- Synchronizes detections from multiple radars
-- Clusters radar detections using DBSCAN
-- Generates candidate radar triplets
-- Selects the most consistent triplet using a geometric heuristic (Minimum Midpoint Distance)
-- Extracts localization features
-- Trains machine learning models to predict the human's 2D position
-
-The project also compares multiple regression models for localization performance.
-
----
-
-## Pipeline
-
-```
+```text
 Raw Radar Data
-        │
-        ▼
+      │
+      ▼
 Coordinate Transformation
-        │
-        ▼
-Time Synchronization & Binning
-        │
-        ▼
+      │
+      ▼
+Time Synchronization
+      │
+      ▼
 DBSCAN Clustering
-        │
-        ▼
+      │
+      ▼
 Cluster Centroid Extraction
-        │
-        ▼
+      │
+      ▼
 Candidate Triplet Generation
-        │
-        ▼
+      │
+      ▼
 Minimum Midpoint Distance (Min-DMid) Selection
-        │
-        ▼
+      │
+      ▼
 Feature Extraction
 (Range, Angle, SNR, Intensity, Noise)
-        │
-        ▼
+      │
+      ▼
 Machine Learning Regression
-        │
-        ▼
+      │
+      ▼
 Predicted Human Position (x, y)
 ```
 
 ---
 
-## Features
-
-- Multi-radar sensor fusion
-- Coordinate transformation to a common reference frame
-- Time synchronization of radar detections
-- DBSCAN-based spatial clustering
-- Candidate triplet generation
-- Geometric triplet selection using the **Minimum Midpoint Distance (Min-DMid)** heuristic
-- Range and angle feature engineering
-- Machine learning-based localization
-- Performance evaluation using RMSE, MAE, and R²
-
----
-
-## Machine Learning Models
-
-The project compares several regression models for localization:
-
-- Gradient Boosting Regressor (GBR)
-- Multi-Layer Perceptron (MLP)
-- Random Forest Regressor
-- Ridge Regression
-- Polynomial Ridge Regression
-- Gaussian Process Regression
-- Quantile Gradient Boosting
-
----
-
-## Repository Structure
+## Project Structure
 
 ```
-range-angle-human-localization/
+multi-radar-human-localization/
 │
 ├── notebooks/
 │   ├── 01_dbscan_visualization.ipynb
 │   ├── 02_localization_pipeline.ipynb
 │   └── 03_model_comparison.ipynb
 │
-├── results/
-│   ├── dbscan_visualizations/
-│   ├── triplet_visualizations/
+├── docs/
+│   ├── dbscan_visualization/
 │   ├── localization_metrics/
-│   └── simulation_results/
+│   ├── triplet_visualization/
+│   ├── simulation_results/
+│   ├── CSM_angle_GPR/
+│   ├── CSM_range_GPR/
+│   └── CSM_CSM_geometry_tuning/
+│
 ├── README.md
+├── requirements.txt
+└── .gitignore
 ```
 
 ---
 
-## Notebook Description
+## Notebooks
 
 ### 01_dbscan_visualization.ipynb
 
-Visualizes each stage of preprocessing:
+Visualizes the preprocessing stages of the localization pipeline, including:
 
 - Raw radar detections
 - DBSCAN clustering
@@ -119,20 +84,59 @@ Visualizes each stage of preprocessing:
 
 ### 02_localization_pipeline.ipynb
 
-Implements the complete localization pipeline:
+Implements the complete localization framework.
+
+Main components:
 
 - Data preprocessing
+- Coordinate transformation
+- DBSCAN clustering
+- Triplet selection using the Minimum Midpoint Distance heuristic
 - Feature extraction
-- Gradient Boosting localization model
-- Hyperparameter optimization
-- Model evaluation
-- Prediction visualization
+- Gradient Boosting Regression for localization
+- Performance evaluation
 
 ---
 
 ### 03_model_comparison.ipynb
 
-Compares multiple machine learning models and evaluates their localization performance using identical preprocessing and feature sets.
+Compares different regression models using the same preprocessing pipeline.
+
+Models evaluated include:
+
+- Gradient Boosting Regressor
+- Random Forest
+- Ridge Regression
+- Gaussian Process Regression
+- Multi-Layer Perceptron (MLP)
+- Quantile Gradient Boosting
+
+---
+
+## Features
+
+- Multi-radar sensor fusion
+- Time synchronization
+- Coordinate transformation
+- DBSCAN clustering
+- Candidate triplet generation
+- Geometric triplet selection (Min-DMid)
+- Range-angle feature engineering
+- Supervised machine learning for localization
+- Model comparison and evaluation
+
+---
+
+## Results
+
+The `docs/` directory contains representative outputs from the experiments, including:
+
+- DBSCAN clustering visualizations
+- Triplet selection visualizations
+- Geometry tuning results
+- Localization metrics
+- Gaussian Process Regression results
+- Simulation outputs
 
 ---
 
@@ -149,7 +153,7 @@ Localization performance is evaluated using:
 
 ---
 
-## Technologies Used
+## Technologies
 
 - Python
 - NumPy
@@ -161,24 +165,58 @@ Localization performance is evaluated using:
 
 ---
 
-## Example Outputs
+## Installation
 
-The repository contains example outputs including:
+Clone the repository
 
-- DBSCAN clustering visualizations
-- Candidate triplet plots
-- Selected triplet visualizations
-- Prediction vs Ground Truth scatter plots
-- Localization error histograms
-- Model performance metrics
+```bash
+git clone https://github.com/Charithagadari/multi-radar-human-localization.git
+```
 
+Install the required packages
 
+```bash
+pip install -r requirements.txt
+```
+
+Launch Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+---
+
+## Future Work
+
+- Real-time localization
+- Multi-person tracking
+- Deep learning-based localization
+- Kalman Filter based trajectory estimation
+- Sensor fusion with vision and LiDAR
+- ROS integration
+
+---
 
 ## Author
 
 **Charitha Gadari**
 
-M.Tech Computer Science and Engineering  
+M.Tech, Computer Science and Engineering
+
 Indian Institute of Information Technology Design and Manufacturing (IIITDM) Kurnool
-# multi-radar-human-localization
-# multi-radar-human-localization
+
+Research Interests:
+
+- Machine Learning
+- Computer Vision
+- Autonomous Systems
+- Sensor Fusion
+- Radar Signal Processing
+- Human Localization
+
+---
+
+## License
+
+This project is released under the MIT License.
