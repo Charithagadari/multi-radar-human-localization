@@ -173,18 +173,6 @@ Clone the repository
 git clone https://github.com/Charithagadari/multi-radar-human-localization.git
 ```
 
-Install the required packages
-
-```bash
-pip install -r requirements.txt
-```
-
-Launch Jupyter Notebook
-
-```bash
-jupyter notebook
-```
-
 ---
 
 ## Future Work
